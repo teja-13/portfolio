@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Teja Swaroop Battula - MERN stack developer and B.Tech CSE student.">
+  <meta name="theme-color" content="#0b6459">
+  <title>Teja Swaroop Battula | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg-deep: #081c1a;
+  --bg-mid: #0b2a27;
+  --surface: rgba(255, 255, 255, 0.08);
+  --surface-strong: rgba(255, 255, 255, 0.14);
+  --text-main: #f4fff8;
+  --text-soft: #b8d4ca;
+  --mint: #39e6be;
+  --teal: #19a98d;
+  --gold: #f8d66d;
+  --danger: #ef6a6a;
+  --shadow: 0 20px 50px rgba(4, 10, 11, 0.36);
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  line-height: 1.6;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at 8% 12%, rgba(57, 230, 190, 0.16), transparent 35%),
+    radial-gradient(circle at 88% 16%, rgba(248, 214, 109, 0.12), transparent 30%),
+    linear-gradient(165deg, var(--bg-deep), var(--bg-mid));
+  min-height: 100vh;
+}
+
+a {
+  color: var(--mint);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+  color: #76f8d5;
+}
+
+button {
+  font: inherit;
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.scroll-progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--mint), var(--gold));
+}
+
+.background-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0.5;
+}
+
+.orb-one {
+  width: 340px;
+  height: 340px;
+  top: -110px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(57, 230, 190, 0.36), rgba(57, 230, 190, 0.02));
+  animation: floatOrb 12s ease-in-out infinite;
+}
+
+.orb-two {
+  width: 260px;
+  height: 260px;
+  right: 8%;
+  top: 18%;
+  background: radial-gradient(circle, rgba(248, 214, 109, 0.26), rgba(248, 214, 109, 0));
+  animation: floatOrb 15s ease-in-out infinite reverse;
+}
+
+.orb-three {
+  width: 280px;
+  height: 280px;
+  left: 55%;
+  bottom: -120px;
+  background: radial-gradient(circle, rgba(25, 169, 141, 0.2), rgba(25, 169, 141, 0));
+  animation: floatOrb 13s ease-in-out infinite;
+}
+
+.site-shell {
+  width: min(1150px, calc(100% - 2.2rem));
+  margin: 1.1rem auto 2.2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.topbar {
+  position: sticky;
+  top: 10px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(8, 28, 26, 0.72);
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  font-size: 0.92rem;
+  padding: 0.38rem 0.72rem;
+  border-radius: 999px;
+  color: var(--text-soft);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible,
+.site-nav a.active {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.menu-toggle {
+  display: none;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--text-main);
+  border-radius: 999px;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+}
+
+main section[id] {
+  scroll-margin-top: 90px;
+}
+
+.hero {
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.04));
+  box-shadow: var(--shadow);
+  padding: clamp(1.5rem, 3vw, 3rem);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--gold);
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+}
+
+.hero h1 {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.8rem, 5vw, 3.3rem);
+  line-height: 1.06;
+}
+
+.subtitle {
+  margin: 0.55rem 0 0;
+  color: #d8fbee;
+  font-size: clamp(1rem, 2vw, 1.28rem);
+  font-weight: 500;
+}
+
+.summary {
+  margin-top: 1rem;
+  max-width: 73ch;
+  color: var(--text-soft);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.72rem;
+  margin-top: 1.25rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: linear-gradient(120deg, var(--mint), #70ffc8);
+  color: #0c2724;
+}
+
+.btn-outline {
+  border-color: rgba(255, 255, 255, 0.26);
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.btn-soft {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--text-main);
+}
+
+.facts {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.fact-card {
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.95rem 0.9rem;
+}
+
+.fact-number {
+  margin: 0;
+  color: var(--gold);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: clamp(1.15rem, 1.9vw, 1.55rem);
+  font-weight: 500;
+}
+
+.fact-label {
+  margin: 0.25rem 0 0;
+  color: var(--text-soft);
+  font-size: 0.88rem;
+}
+
+.content-section,
+.footer {
+  margin-top: 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: var(--shadow);
+  padding: clamp(1.2rem, 2.7vw, 2rem);
+}
+
+.section-head h2,
+.footer h2 {
+  margin: 0;
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+}
+
+.section-head p,
+.footer p {
+  margin: 0.45rem 0 0;
+  color: var(--text-soft);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+.about-card {
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.about-card p {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.about-card p + p {
+  margin-top: 0.7rem;
+}
+
+.info-stack p {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.info-stack span {
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--gold);
+  font-size: 0.86rem;
+}
+
+.filter-row {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  padding: 0.36rem 0.74rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.filter-btn:hover,
+.filter-btn:focus-visible,
+.filter-btn.active {
+  background: rgba(57, 230, 190, 0.18);
+  border-color: rgba(57, 230, 190, 0.6);
+}
+
+.skills-grid {
+  margin-top: 0.95rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.skill-card {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.9rem;
+}
+
+.skill-card h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.skill-card p {
+  margin: 0.4rem 0 0;
+  color: var(--text-soft);
+}
+
+.skill-card.is-hidden {
+  display: none;
+}
+
+.project-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.project-card {
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(8, 28, 26, 0.52);
+  padding: 1rem;
+}
+
+.project-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+
+.project-card h3 {
+  margin: 0;
+  font-size: 1.03rem;
+  max-width: 30ch;
+}
+
+.project-card p {
+  margin: 0.65rem 0 0;
+  color: var(--text-soft);
+}
+
+.project-card ul {
+  margin: 0.68rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--text-soft);
+}
+
+.project-card li + li {
+  margin-top: 0.35rem;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.8rem;
+}
+
+.chip-row span {
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 0.18rem 0.55rem;
+  font-size: 0.82rem;
+  color: #d8fbee;
+}
+
+.chip-row.large span {
+  font-size: 0.92rem;
+  padding: 0.3rem 0.72rem;
+}
+
+.mini-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(57, 230, 190, 0.42);
+  border-radius: 999px;
+  padding: 0.28rem 0.66rem;
+  color: #bafbe7;
+  font-size: 0.83rem;
+  white-space: nowrap;
+}
+
+.timeline {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.72rem;
+}
+
+.timeline-item {
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.9rem;
+}
+
+.timeline-item h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.timeline-item p,
+.timeline-item span {
+  margin: 0.35rem 0 0;
+  color: var(--text-soft);
+  display: block;
+}
+
+.card-grid {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.two-col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.simple-card {
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.95rem;
+}
+
+.simple-card h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.simple-card .mini-link {
+  margin-top: 0.68rem;
+}
+
+.footer-actions {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.foot-links {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.copyright {
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  color: #97bbaf;
+}
+
+.back-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 40;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background: rgba(8, 28, 26, 0.88);
+  color: var(--text-main);
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.back-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes floatOrb {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(16px) scale(1.03);
+  }
+}
+
+@media (max-width: 1060px) {
+  .facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .project-grid,
+  .two-col,
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-shell {
+    width: min(100%, calc(100% - 1rem));
+  }
+
+  .topbar {
+    border-radius: 16px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .site-nav {
+    width: 100%;
+    display: none;
+    padding-top: 0.5rem;
+  }
+
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .footer-actions .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 440px) {
+  .facts {
+    grid-template-columns: 1fr;
+  }
+
+  .project-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="scroll-progress" aria-hidden="true">
+    <span id="progressBar"></span>
+  </div>
+
+  <div class="background-layer" aria-hidden="true">
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="orb orb-three"></div>
+  </div>
+
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#home">TSB</a>
+      <button id="menuToggle" class="menu-toggle" aria-controls="siteNav" aria-expanded="false">Menu</button>
+      <nav id="siteNav" class="site-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero reveal">
+        <p class="eyebrow">Portfolio 2026</p>
+        <h1>Teja Swaroop Battula</h1>
+        <p class="subtitle">B.Tech CSE Student | MERN Stack Developer</p>
+        <p class="summary">
+          I build practical, user-focused web applications with React, Node.js, Express.js, and MongoDB.
+          I am currently focused on scalable backend design, real-world product workflows, and AI-assisted
+          features that create measurable impact.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://github.com/teja-13" target="_blank" rel="noopener noreferrer">View GitHub</a>
+          <a class="btn btn-outline" href="https://www.linkedin.com/in/teja-swaroop-battula-b76696299" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+          <a class="btn btn-soft" href="mailto:teja72025@gmail.com">Email Me</a>
+        </div>
+      </section>
+
+      <section class="facts reveal" aria-label="Highlights">
+        <article class="fact-card">
+          <p class="fact-number" data-count="2">0</p>
+          <p class="fact-label">Major MERN Projects</p>
+        </article>
+        <article class="fact-card">
+          <p class="fact-number" data-count="5" data-suffix="+">0</p>
+          <p class="fact-label">Programming Languages</p>
+        </article>
+        <article class="fact-card">
+          <p class="fact-number" data-count="2">0</p>
+          <p class="fact-label">Industry Certifications</p>
+        </article>
+        <article class="fact-card">
+          <p class="fact-number" data-count="8.07" data-decimals="2">0</p>
+          <p class="fact-label">Current CGPA</p>
+        </article>
+        <article class="fact-card">
+          <p class="fact-number" data-count="2">0</p>
+          <p class="fact-label">Notable Achievements</p>
+        </article>
+      </section>
+
+      <section id="about" class="content-section reveal">
+        <div class="section-head">
+          <h2>About Me</h2>
+          <p>Computer science undergraduate with strong execution in full-stack delivery and collaborative product building.</p>
+        </div>
+        <div class="about-grid">
+          <div class="about-card">
+            <p>
+              I am a B.Tech Computer Science student at Vasireddy Venkatadri Institute of Technology (VVIT), Guntur,
+              with a deep interest in building scalable web products using the MERN stack.
+            </p>
+            <p>
+              My current focus is on real-world workflow automation, secure backend systems, and AI-powered features such as
+              semantic matching and text-driven insights.
+            </p>
+          </div>
+          <div class="about-card info-stack">
+            <p><span>Email</span> <a href="mailto:teja72025@gmail.com">teja72025@gmail.com</a></p>
+            <p><span>Phone</span> <a href="tel:+918919537353">+91 8919537353</a></p>
+            <p><span>LinkedIn</span> <a href="https://www.linkedin.com/in/teja-swaroop-battula-b76696299" target="_blank" rel="noopener noreferrer">View profile</a></p>
+            <p><span>GitHub</span> <a href="https://github.com/teja-13" target="_blank" rel="noopener noreferrer">Explore repositories</a></p>
+            <p><span>Base</span> Guntur, Andhra Pradesh, India</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="content-section reveal">
+        <div class="section-head">
+          <h2>Skills</h2>
+          <p>Filter by category to quickly scan the stack I use in development projects.</p>
+        </div>
+
+        <div class="filter-row" role="group" aria-label="Skill filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="languages">Languages</button>
+          <button class="filter-btn" data-filter="frontend">Frontend</button>
+          <button class="filter-btn" data-filter="backend">Backend</button>
+          <button class="filter-btn" data-filter="databases">Databases</button>
+          <button class="filter-btn" data-filter="ai">AI / NLP</button>
+          <button class="filter-btn" data-filter="tools">Tools</button>
+          <button class="filter-btn" data-filter="soft">Soft Skills</button>
+        </div>
+
+        <div class="skills-grid">
+          <article class="skill-card" data-category="languages">
+            <h3>Languages</h3>
+            <p>JavaScript (ES6+), Python, Java, C, SQL</p>
+          </article>
+          <article class="skill-card" data-category="frontend">
+            <h3>Frontend</h3>
+            <p>React.js, TypeScript, Vite, Tailwind CSS, React Router</p>
+          </article>
+          <article class="skill-card" data-category="backend">
+            <h3>Backend</h3>
+            <p>Node.js, Express.js, REST APIs, JWT Authentication, Middleware</p>
+          </article>
+          <article class="skill-card" data-category="databases">
+            <h3>Databases</h3>
+            <p>MongoDB Atlas, Mongoose, MySQL</p>
+          </article>
+          <article class="skill-card" data-category="ai">
+            <h3>AI / NLP</h3>
+            <p>TF-IDF, Cosine Similarity, Text Processing, Pandas, NumPy</p>
+          </article>
+          <article class="skill-card" data-category="tools">
+            <h3>Tools</h3>
+            <p>Git, GitHub, Postman</p>
+          </article>
+          <article class="skill-card" data-category="soft">
+            <h3>Soft Skills</h3>
+            <p>Leadership, Problem Solving, Communication, Time Management</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="content-section reveal">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p>Detailed snapshots of product work across AI and workflow management domains.</p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-head">
+              <h3>AI-Powered Resume-JD Matcher (MERN)</h3>
+              <a class="mini-link" href="https://github.com/teja-13/resume-jd-analyser" target="_blank" rel="noopener noreferrer">Source Code</a>
+            </div>
+            <p>
+              Built a complete MERN application for resume-job description matching using NLP-powered ranking,
+              match score generation, and skill-gap highlighting.
+            </p>
+            <ul>
+              <li>Implemented resume parsing support for PDF and DOCX uploads.</li>
+              <li>Used TF-IDF and cosine similarity for semantic job relevance scoring.</li>
+              <li>Designed JWT-secured APIs and integrated them with a React frontend.</li>
+            </ul>
+            <div class="chip-row">
+              <span>React</span>
+              <span>Node.js</span>
+              <span>Express.js</span>
+              <span>MongoDB</span>
+              <span>NLP</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-head">
+              <h3>Smart Library Management System</h3>
+              <a class="mini-link" href="https://github.com/teja-13/e2e" target="_blank" rel="noopener noreferrer">Source Code</a>
+            </div>
+            <p>
+              Developed a role-based MERN platform for handling books, borrowers, and admin workflows
+              with secure authentication and full-stack integration.
+            </p>
+            <ul>
+              <li>Built user and librarian flows with permissions and protected routes.</li>
+              <li>Added reservations, due-date tracking, overdue handling, and fines.</li>
+              <li>Connected APIs, database models, and frontend state for smooth operations.</li>
+            </ul>
+            <div class="chip-row">
+              <span>React</span>
+              <span>Express.js</span>
+              <span>MongoDB</span>
+              <span>JWT</span>
+              <span>Role-Based Access</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="education" class="content-section reveal">
+        <div class="section-head">
+          <h2>Education</h2>
+          <p>Academic progression and performance milestones.</p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item">
+            <h3>B.Tech CSE - VVIT, Guntur</h3>
+            <p>CGPA: 8.07 / 10</p>
+            <span>2023 - Present</span>
+          </article>
+          <article class="timeline-item">
+            <h3>ISC (Class XII) - Loyola Public School, Guntur</h3>
+            <p>Score: 79.6%</p>
+            <span>2021 - 2023</span>
+          </article>
+          <article class="timeline-item">
+            <h3>ICSE (Class X) - Loyola Public School, Guntur</h3>
+            <p>Score: 90.16%</p>
+            <span>2020 - 2021</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="certifications" class="content-section reveal">
+        <div class="section-head">
+          <h2>Certifications</h2>
+          <p>Formal credentials that support my backend, cloud, and data workflow competencies.</p>
+        </div>
+
+        <div class="card-grid two-col">
+          <article class="simple-card">
+            <h3>Introduction to MongoDB</h3>
+            <a class="mini-link" href="https://github.com/teja-13/certifications/blob/755df082656693cf5ed5b495abb35331c36d462e/23bq1a0524mongodb.pdf" target="_blank" rel="noopener noreferrer">View Certificate</a>
+          </article>
+          <article class="simple-card">
+            <h3>AWS Academy Graduate - Cloud Foundations</h3>
+            <a class="mini-link" href="https://github.com/teja-13/certifications/blob/755df082656693cf5ed5b495abb35331c36d462e/AWS_Academy_Graduate___Cloud_Foundations___Training_Badge_Badge20260306-31-phuif8.pdf" target="_blank" rel="noopener noreferrer">View Certificate</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="achievements" class="content-section reveal">
+        <div class="section-head">
+          <h2>Achievements</h2>
+          <p>Highlights from discipline, team performance, and extracurricular leadership.</p>
+        </div>
+
+        <div class="card-grid two-col">
+          <article class="simple-card">
+            <h3>NCC 'B' Certificate</h3>
+            <a class="mini-link" href="https://drive.google.com/file/d/1F3nM6Y3kxJ4U3gnFOtyH6PG7EkYSlUf0/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">View Proof</a>
+          </article>
+          <article class="simple-card">
+            <h3>Second Place - Central Zone Basketball Inter Collegiate Tournament (2024-2025)</h3>
+            <a class="mini-link" href="https://drive.google.com/file/d/1epJPYzmR4GoaQf53QACa0f72q1xIwnFN/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">View Proof</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="hobbies" class="content-section reveal">
+        <div class="section-head">
+          <h2>Hobbies</h2>
+          <p>Interests that keep me creative, focused, and team-driven.</p>
+        </div>
+
+        <div class="chip-row large">
+          <span>Basketball</span>
+          <span>Music</span>
+          <span>Photography</span>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="footer reveal">
+      <h2>Contact</h2>
+      <p>I am open to internships, project collaborations, and developer opportunities.</p>
+      <div class="footer-actions">
+        <a class="btn btn-primary" href="mailto:teja72025@gmail.com">teja72025@gmail.com</a>
+        <a class="btn btn-outline" href="tel:+918919537353">+91 8919537353</a>
+        <button id="copyEmail" class="btn btn-soft" type="button">Copy Email</button>
+      </div>
+      <p class="foot-links">
+        <a href="https://www.linkedin.com/in/teja-swaroop-battula-b76696299" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <span>|</span>
+        <a href="https://github.com/teja-13" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </p>
+      <p class="copyright">&copy; <span id="year"></span> Teja Swaroop Battula</p>
+    </footer>
+  </div>
+
+  <button id="backToTop" class="back-top" type="button" aria-label="Back to top">Top</button>
+  <script>
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const progressBar = document.getElementById("progressBar");
+const menuToggle = document.getElementById("menuToggle");
+const siteNav = document.getElementById("siteNav");
+const revealItems = document.querySelectorAll(".reveal");
+const counters = document.querySelectorAll("[data-count]");
+const backToTop = document.getElementById("backToTop");
+const filterButtons = document.querySelectorAll(".filter-btn");
+const skillCards = document.querySelectorAll(".skill-card");
+const copyEmail = document.getElementById("copyEmail");
+const yearNode = document.getElementById("year");
+
+if (yearNode) {
+  yearNode.textContent = String(new Date().getFullYear());
+}
+
+if (menuToggle && siteNav) {
+  menuToggle.addEventListener("click", () => {
+    const opened = siteNav.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", opened ? "true" : "false");
+  });
+
+  siteNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      siteNav.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
+if (copyEmail) {
+  copyEmail.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText("teja72025@gmail.com");
+      const original = copyEmail.textContent;
+      copyEmail.textContent = "Email copied";
+      window.setTimeout(() => {
+        copyEmail.textContent = original;
+      }, 1400);
+    } catch (error) {
+      copyEmail.textContent = "Copy failed";
+      window.setTimeout(() => {
+        copyEmail.textContent = "Copy Email";
+      }, 1400);
+    }
+  });
+}
+
+if (filterButtons.length > 0 && skillCards.length > 0) {
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach((item) => item.classList.remove("active"));
+      button.classList.add("active");
+
+      const selected = button.dataset.filter || "all";
+
+      skillCards.forEach((card) => {
+        const category = card.dataset.category || "";
+        const showCard = selected === "all" || category.includes(selected);
+        card.classList.toggle("is-hidden", !showCard);
+      });
+    });
+  });
+}
+
+const updateScrollProgress = () => {
+  if (!progressBar) {
+    return;
+  }
+
+  const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrolled = documentHeight > 0 ? (window.scrollY / documentHeight) * 100 : 0;
+  progressBar.style.width = `${Math.min(100, Math.max(0, scrolled))}%`;
+};
+
+let scrollTicking = false;
+window.addEventListener(
+  "scroll",
+  () => {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(() => {
+        updateScrollProgress();
+
+        if (backToTop) {
+          backToTop.classList.toggle("visible", window.scrollY > 640);
+        }
+
+        scrollTicking = false;
+      });
+
+      scrollTicking = true;
+    }
+  },
+  { passive: true }
+);
+
+updateScrollProgress();
+
+if (backToTop) {
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+  });
+}
+
+const setCounterFinal = (counter) => {
+  const finalValue = Number(counter.dataset.count || "0");
+  const decimals = Number(counter.dataset.decimals || "0");
+  const suffix = counter.dataset.suffix || "";
+  counter.textContent = `${finalValue.toFixed(decimals)}${suffix}`;
+};
+
+const animateCounter = (counter) => {
+  const target = Number(counter.dataset.count || "0");
+  const decimals = Number(counter.dataset.decimals || "0");
+  const suffix = counter.dataset.suffix || "";
+  const duration = 1200;
+  const start = performance.now();
+
+  const run = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = target * eased;
+    counter.textContent = `${current.toFixed(decimals)}${suffix}`;
+
+    if (progress < 1) {
+      window.requestAnimationFrame(run);
+    }
+  };
+
+  window.requestAnimationFrame(run);
+};
+
+if (prefersReducedMotion) {
+  revealItems.forEach((item) => item.classList.add("is-visible"));
+  counters.forEach((counter) => setCounterFinal(counter));
+} else {
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: "0px 0px -5% 0px" }
+  );
+
+  revealItems.forEach((item) => revealObserver.observe(item));
+
+  const counterObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.6 }
+  );
+
+  counters.forEach((counter) => counterObserver.observe(counter));
+}
+
+const sections = document.querySelectorAll("main section[id]");
+const navLinks = document.querySelectorAll('.site-nav a[href^="#"]');
+
+if (sections.length > 0 && navLinks.length > 0) {
+  const activateLink = (id) => {
+    navLinks.forEach((link) => {
+      const target = link.getAttribute("href")?.slice(1);
+      link.classList.toggle("active", target === id);
+    });
+  };
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          activateLink(entry.target.id);
+        }
+      });
+    },
+    {
+      rootMargin: "-45% 0px -45% 0px",
+      threshold: 0
+    }
+  );
+
+  sections.forEach((section) => sectionObserver.observe(section));
+}
+  </script>
+</body>
+</html>
