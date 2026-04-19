@@ -668,11 +668,28 @@ main section[id] {
 .timeline-item,
 .simple-card {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
   transform-style: preserve-3d;
   transform: perspective(980px) translateY(var(--lift, 0px)) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease;
   will-change: transform;
+}
+
+.fact-card::before,
+.about-card::before,
+.skill-card::before,
+.project-card::before,
+.timeline-item::before,
+.simple-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(216, 231, 250, 0.14) 1px, transparent 1px);
+  background-size: 5px 5px;
+  transition: opacity 0.3s ease;
 }
 
 .fact-card::after,
@@ -724,6 +741,21 @@ main section[id] {
 .simple-card:focus-within::after {
   opacity: 0.85;
   animation: cardShine 0.95s ease;
+}
+
+.fact-card:hover::before,
+.about-card:hover::before,
+.skill-card:hover::before,
+.project-card:hover::before,
+.timeline-item:hover::before,
+.simple-card:hover::before,
+.fact-card:focus-within::before,
+.about-card:focus-within::before,
+.skill-card:focus-within::before,
+.project-card:focus-within::before,
+.timeline-item:focus-within::before,
+.simple-card:focus-within::before {
+  opacity: 0.66;
 }
 
 .simple-card h3 {
@@ -1182,17 +1214,17 @@ main section[id] {
         </div>
 
         <div class="timeline">
-          <article class="timeline-item">
+          <article class="timeline-item" tabindex="0">
             <h3>B.Tech CSE - VVIT, Guntur</h3>
             <p>CGPA: 7.92 / 10</p>
             <span>2023 - Present</span>
           </article>
-          <article class="timeline-item">
+          <article class="timeline-item" tabindex="0">
             <h3>ISC (Class XII) - Loyola Public School, Guntur</h3>
             <p>Score: 79.6%</p>
             <span>2021 - 2023</span>
           </article>
-          <article class="timeline-item">
+          <article class="timeline-item" tabindex="0">
             <h3>ICSE (Class X) - Loyola Public School, Guntur</h3>
             <p>Score: 90.16%</p>
             <span>2020 - 2021</span>
