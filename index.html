@@ -130,9 +130,9 @@ button {
   position: sticky;
   top: 10px;
   z-index: 30;
-  display: flex;
+  display: grid;
   align-items: center;
-  justify-content: space-between;
+  grid-template-columns: 1fr auto 1fr;
   gap: 1rem;
   padding: 0.7rem 1rem;
   margin-bottom: 1rem;
@@ -144,6 +144,7 @@ button {
 }
 
 .brand {
+  justify-self: start;
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.98rem;
   font-weight: 500;
@@ -152,8 +153,10 @@ button {
 }
 
 .site-nav {
+  grid-column: 2;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   flex-wrap: wrap;
 }
@@ -174,6 +177,8 @@ button {
 }
 
 .menu-toggle {
+  grid-column: 3;
+  justify-self: end;
   display: none;
   background: #eadab4;
   border: 1px solid rgba(58, 26, 20, 0.4);
@@ -678,15 +683,19 @@ main section[id] {
 
   .topbar {
     border-radius: 16px;
-    align-items: flex-start;
-    flex-wrap: wrap;
+    grid-template-columns: auto auto;
+    align-items: center;
+    row-gap: 0.5rem;
   }
 
   .menu-toggle {
     display: inline-flex;
+    grid-column: 2;
+    justify-self: end;
   }
 
   .site-nav {
+    grid-column: 1 / -1;
     width: 100%;
     display: none;
     padding-top: 0.5rem;
