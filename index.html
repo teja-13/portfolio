@@ -581,6 +581,13 @@ main section[id] {
   gap: 0.8rem;
 }
 
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: flex-end;
+}
+
 .project-card ul {
   margin: 0.64rem 0 0;
   padding-left: 1.05rem;
@@ -743,6 +750,10 @@ main section[id] {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .project-links {
+    justify-content: flex-start;
+  }
 }
 
 @media (hover: none), (pointer: coarse) {
@@ -817,9 +828,9 @@ main section[id] {
         <p class="subtitle">B.Tech CSE Undergraduate | Java Developer Candidate</p>
         <p class="summary">
           B.Tech Computer Science undergraduate graduating in 2027, seeking a Java Developer role. Built and
-          deployed two full-stack applications, including a Spring Boot REST backend with Spring Security,
-          JWT authentication, role-based access control, and a scheduled background job. Solved 900+ problems
-          on LeetCode and CodeChef.
+          deployed three full-stack applications, including a Spring Boot REST backend with Spring Security,
+          JWT authentication, role-based access control, a scheduled background job, and a Dockerized AWS
+          deployment with CI. Solved 900+ problems on LeetCode and CodeChef.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://github.com/teja-13" target="_blank" rel="noopener noreferrer">View GitHub</a>
@@ -830,7 +841,7 @@ main section[id] {
 
       <section class="facts reveal" aria-label="Highlights">
         <article class="fact-card">
-          <p class="fact-number" data-count="2">0</p>
+          <p class="fact-number" data-count="3">0</p>
           <p class="fact-label">Full-Stack Projects</p>
         </article>
         <article class="fact-card">
@@ -889,6 +900,7 @@ main section[id] {
           <button class="filter-btn" data-filter="frontend">Frontend</button>
           <button class="filter-btn" data-filter="backend">Backend</button>
           <button class="filter-btn" data-filter="databases">Databases</button>
+          <button class="filter-btn" data-filter="devops">DevOps &amp; Cloud</button>
           <button class="filter-btn" data-filter="tools">Tools</button>
         </div>
 
@@ -899,15 +911,19 @@ main section[id] {
           </article>
           <article class="skill-card" data-category="frontend">
             <h3>Frontend</h3>
-            <p>React.js, TypeScript</p>
+            <p>React.js, TypeScript, Vite</p>
           </article>
           <article class="skill-card" data-category="backend">
             <h3>Backend</h3>
-            <p>Spring Boot, Spring Security, REST API Design, JWT Authentication, Node.js, Express.js</p>
+            <p>Spring Boot, Spring Security, REST API Design, JWT Authentication, Role-Based Access Control, Idempotent APIs, Node.js, Express.js, Maven</p>
           </article>
           <article class="skill-card" data-category="databases">
             <h3>Databases</h3>
-            <p>MySQL, MongoDB Atlas, Mongoose</p>
+            <p>PostgreSQL, MySQL, MongoDB Atlas, Mongoose, Redis, Flyway Migrations</p>
+          </article>
+          <article class="skill-card" data-category="devops">
+            <h3>DevOps &amp; Cloud</h3>
+            <p>Docker, Docker Compose, GitHub Actions (CI), AWS EC2, AWS ECR, Nginx</p>
           </article>
           <article class="skill-card" data-category="tools">
             <h3>Tools</h3>
@@ -966,6 +982,38 @@ main section[id] {
               <span>Node.js</span>
               <span>Express.js</span>
               <span>MongoDB</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-head">
+              <h3>BalanceVault - Secure Financial Transaction System</h3>
+              <div class="project-links">
+                <a class="mini-link" href="https://github.com/teja-13/snovasys" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a class="mini-link" href="http://16.178.222.175/" target="_blank" rel="noopener noreferrer">Live</a>
+              </div>
+            </div>
+            <p>
+              Built and deployed a financial transaction management platform on AWS EC2 with a Spring Boot backend,
+              React/TypeScript frontend, PostgreSQL, and Redis, served behind Nginx with Docker Compose.
+            </p>
+            <ul>
+              <li>Implemented double-entry bookkeeping for internal transfers, locking both accounts in a deterministic order inside one database transaction to prevent double-spending and deadlocks.</li>
+              <li>Secured the API with JWT access tokens, rotating refresh-token sessions, and role-based access for customers, admins, and auditors, with an audit log of sensitive actions.</li>
+              <li>Added idempotency-key handling for transfers and deposits, plus database triggers that make ledger entries and audit logs immutable, with Flyway migrations for schema changes.</li>
+              <li>Set up GitHub Actions CI (Maven verify against PostgreSQL, Oxlint and Vite build) and Docker images pushed to AWS ECR for EC2 deployment.</li>
+            </ul>
+            <div class="chip-row">
+              <span>Java</span>
+              <span>Spring Boot</span>
+              <span>Spring Security</span>
+              <span>PostgreSQL</span>
+              <span>Redis</span>
+              <span>React.js</span>
+              <span>TypeScript</span>
+              <span>Docker</span>
+              <span>AWS EC2</span>
+              <span>GitHub Actions</span>
             </div>
           </article>
         </div>
